@@ -4,5 +4,9 @@ import plotly.express as px
 
 df = pd.read_csv('https://raw.githubusercontent.com/jviskari/enkeys/master/data/enkeys.csv')
 
-fig = px.line(df, x = 'ENK_x', y = 'ENK_y', title='Amount of exposure notification keys checked over time (2020-)')
-fig.show()
+fig1=px.scatter(df, y='ENK_y', trendline_color_override='crimson', trendline='lowess')
+fig2=px.bar(df, y='ENK_y')
+fig1.add_traces(fig2.data[0])
+
+
+fig1.show()
